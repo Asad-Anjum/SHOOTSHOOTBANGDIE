@@ -2,6 +2,7 @@ using UnityEngine.Audio;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public class MusicManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MusicManager : MonoBehaviour
     public static MusicManager instance;
     public static string currScene = "";
     public static AudioSource currBGM = null;
+
+    bool playTheme;
 
     void Awake()
     {
@@ -36,10 +39,22 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    
     void FixedUpdate(){
-        BGM();
+        if (playTheme)
+        {
+            BGM();
+        }
+        else
+        {
+            StopBGM("MainTheme");
+        }
     }
 
+   
+
+   
+    
     void BGM(){
         string sceneName = SceneManager.GetActiveScene().name;
         if(sceneName != currScene){
@@ -47,18 +62,50 @@ public class MusicManager : MonoBehaviour
                 if(currBGM != null){
                     currBGM.Stop();
                 }
+
+                
+
                 currBGM = PlayBGM("MainTheme");
+
+                //currBGM = StopBGM("MainTheme");
+                
             }
             currScene = sceneName;
         }
-    }
+    } 
+
+    
+
     public void PlaySoundEffects(string name){
         Sound s = Array.Find(sounds, sounds => sounds.name == name);
         s.source.Play();
     }
     public AudioSource PlayBGM(string name){
         Sound s = Array.Find(sounds, sounds => sounds.name == name);
+       
+
         s.source.Play();
         return s.source;
+    }
+
+    public void StopBGM(string name)
+    {
+        Sound s = Array.Find(sounds, sounds => sounds.name == name);
+
+
+        s.source.Stop();
+        
+    }
+
+    public void TogglePlayTheme(bool tog)
+    {
+        if (tog)
+        {
+            playTheme = true;
+        }
+        else
+        {
+            playTheme = false;
+        }
     }
 }
