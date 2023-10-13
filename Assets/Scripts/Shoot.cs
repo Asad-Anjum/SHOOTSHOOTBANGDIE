@@ -13,6 +13,8 @@ public class Shoot : MonoBehaviour
     private float timer;
     public float timeBtwFiring;
 
+    bool playSound;
+
     void Start()
     {
         playerPos = GetComponent<Transform>();
@@ -42,8 +44,23 @@ public class Shoot : MonoBehaviour
         if(Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
-            FindObjectOfType<MusicManager>().PlaySoundEffects("Laser");
+            if (playSound)
+            {
+                FindObjectOfType<MusicManager>().PlaySoundEffects("Laser");
+            }
+            
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+        }
+    }
+
+    public void ToggleSFX(bool tog)
+    {
+        if(tog)
+        {
+            playSound = true;
+        }
+        else {
+            playSound=false;
         }
     }
 }

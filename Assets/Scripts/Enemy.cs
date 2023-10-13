@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public GameObject[] dieEffect;
     public int x = 0;
 
-
+    bool playSFX;
     
 
     void Start()
@@ -27,7 +27,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (playSFX)
+        {
+            print("play");
+        }
 
         transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
     }
@@ -55,12 +58,35 @@ public class Enemy : MonoBehaviour
             ScreenShake.Invoke();//Toggle this on/off
             Destroy(col.gameObject);
             if(speed == 0){
-                FindObjectOfType<MusicManager>().PlaySoundEffects("Shatter");
+                if (playSFX)
+                {
+                    FindObjectOfType<MusicManager>().PlaySoundEffects("Shatter");
+                }
+                
             }
             else{
-                FindObjectOfType<MusicManager>().PlaySoundEffects("EnemyDeath");
+
+                if (playSFX)
+                {
+                    FindObjectOfType<MusicManager>().PlaySoundEffects("EnemyDeath");
+                }
+                
                 }
             Destroy(gameObject);
+        }
+    }
+
+    public void ToggleSFX(bool tog)
+    {
+        if (tog)
+        {
+            print("t");
+            playSFX = true;
+        }
+        else
+        {
+            print("f");
+            playSFX=false;
         }
     }
 }

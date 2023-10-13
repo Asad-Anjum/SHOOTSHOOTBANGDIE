@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     public float dashTime;
     public float dashCooldown;
 
+    bool playSound;
+
     [SerializeField] private TrailRenderer tr;
 
     private MusicManager soundEfx;
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        
+
         if(hitScreen.GetComponent<Image>().color.a > 0)
         {
             var color = hitScreen.GetComponent<Image>().color;
@@ -67,7 +71,11 @@ public class Player : MonoBehaviour
             var color = freezeScreen.GetComponent<Image>().color;
             color.a = 0.3f;
             freezeScreen.GetComponent<Image>().color = color;
-            soundEfx.PlaySoundEffects("Freeze");
+            if (playSound)
+            {
+                soundEfx.PlaySoundEffects("Freeze");
+            }
+            
         }
         if(oldHealth != health)
         {
@@ -81,12 +89,18 @@ public class Player : MonoBehaviour
             }
 
             oldHealth = health;
-            soundEfx.PlaySoundEffects("PlayerHit");
+            if (playSound)
+            {
+                soundEfx.PlaySoundEffects("PlayerHit");
+            }
         }
         healthDisplay.text = "HEALTH: " + health.ToString();
         if(health <= 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            soundEfx.PlaySoundEffects("PlayerDeath");
+            if (playSound)
+            {
+                soundEfx.PlaySoundEffects("PlayerDeath");
+            } 
         }
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement = input.normalized * speed;
@@ -130,4 +144,17 @@ public class Player : MonoBehaviour
         color.a = 0.3f;
         hitScreen.GetComponent<Image>().color = color;
     }
+
+    public void ToggleSound(bool tog)
+    {
+        if (tog)
+        {
+            playSound = true;
+        }
+        else
+        {
+            playSound = false;
+        }
+    }
+
 }
