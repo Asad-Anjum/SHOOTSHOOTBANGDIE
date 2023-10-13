@@ -27,10 +27,14 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TrailRenderer tr;
 
+    private MusicManager soundEfx;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         oldHealth = health;
+        soundEfx = FindObjectOfType<MusicManager>();
+
     }
 
     void Update()
@@ -63,6 +67,7 @@ public class Player : MonoBehaviour
             var color = freezeScreen.GetComponent<Image>().color;
             color.a = 0.3f;
             freezeScreen.GetComponent<Image>().color = color;
+            soundEfx.PlaySoundEffects("Freeze");
         }
         if(oldHealth != health)
         {
@@ -76,15 +81,20 @@ public class Player : MonoBehaviour
             }
 
             oldHealth = health;
+            soundEfx.PlaySoundEffects("PlayerHit");
         }
         healthDisplay.text = "HEALTH: " + health.ToString();
-        if (health <= 0) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(health <= 0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            soundEfx.PlaySoundEffects("PlayerDeath");
+        }
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement = input.normalized * speed;
 
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
             StartCoroutine(Dash());
+            //Dash Sfx here
         }
     }
 

@@ -42,6 +42,7 @@ public class Shoot : MonoBehaviour
         if(Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
+            FindObjectOfType<MusicManager>().PlaySoundEffects("Laser");
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }

@@ -54,6 +54,12 @@ public class Enemy : MonoBehaviour
             Instantiate(dieEffect[x], transform.position, Quaternion.identity); //Toggle this on/off
             ScreenShake.Invoke();//Toggle this on/off
             Destroy(col.gameObject);
+            if(speed == 0){
+                FindObjectOfType<MusicManager>().PlaySoundEffects("Shatter");
+            }
+            else{
+                FindObjectOfType<MusicManager>().PlaySoundEffects("EnemyDeath");
+                }
             Destroy(gameObject);
         }
     }

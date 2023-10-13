@@ -1642,6 +1642,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408629512}
   m_CullTransparentMesh: 1
+--- !u!1 &1698680653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698680655}
+  - component: {fileID: 1698680654}
+  m_Layer: 0
+  m_Name: MuiscManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1698680654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698680653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42878d2faa0881b42b94932447c81e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MainTheme
+    clip: {fileID: 8300000, guid: aff07b1e9489f43388b5344402878dbc, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    group: {fileID: 24300002, guid: 327801d013a06f74eab86abb789f3225, type: 2}
+    source: {fileID: 0}
+  - name: Laser
+    clip: {fileID: 8300000, guid: 2eef6aa47421b7c47a9ea3f2ca4f8f24, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: PlayerHit
+    clip: {fileID: 8300000, guid: b439edad8a7d6044e83636046f280c97, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: Freeze
+    clip: {fileID: 8300000, guid: 16fa8fd6c64a9a94881a3d6521d08a04, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: Shatter
+    clip: {fileID: 8300000, guid: 7470603b4194f774fa6fd08ce509721f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: EnemyDeath
+    clip: {fileID: 8300000, guid: 1488a379588bae9428ae963f4a072e08, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 586e9bedbe334d947a83fc7526aadb0d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+--- !u!4 &1698680655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698680653}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.533611, y: 5.9479094, z: 0.1611827}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961102637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,6 +1916,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1698680655}
   - {fileID: 343471513}
   - {fileID: 1042080373}
   - {fileID: 2128731778580299478}
