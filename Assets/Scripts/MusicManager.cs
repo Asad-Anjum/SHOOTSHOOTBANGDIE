@@ -41,7 +41,7 @@ public class MusicManager : MonoBehaviour
 
     
     void FixedUpdate(){
-        if (playTheme)
+        if (PublicVars.playTheme)
         {
             BGM();
         }
@@ -97,15 +97,5 @@ public class MusicManager : MonoBehaviour
         
     }
 
-    public void TogglePlayTheme(bool tog)
-    {
-        if (tog)
-        {
-            playTheme = true;
-        }
-        else
-        {
-            playTheme = false;
-        }
-    }
+    
 }

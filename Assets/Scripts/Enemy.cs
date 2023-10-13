@@ -39,7 +39,11 @@ public class Enemy : MonoBehaviour
     {
         if(col.tag == "Player")
         {
-            Instantiate(playerHitEffect[x], transform.position, Quaternion.identity); //Toggle this on/off
+            if (PublicVars.playerHitEffectsOn)
+            {
+                Instantiate(playerHitEffect[x], transform.position, Quaternion.identity);
+            }
+            //Instantiate(playerHitEffect[x], transform.position, Quaternion.identity); //Toggle this on/off
             Vector3 oldPos = ss.positionStrength;
             Vector3 oldRot = ss.rotationStrength;
             ss.positionStrength = new Vector3(0.6f,0.6f,0f);
@@ -54,7 +58,11 @@ public class Enemy : MonoBehaviour
 
         if(col.tag == "Bullet")
         {
-            Instantiate(dieEffect[x], transform.position, Quaternion.identity); //Toggle this on/off
+            if (PublicVars.dieEffectsOn)
+            {
+                Instantiate(dieEffect[x], transform.position, Quaternion.identity);
+            }
+            //Instantiate(dieEffect[x], transform.position, Quaternion.identity); //Toggle this on/off
             ScreenShake.Invoke();//Toggle this on/off
             Destroy(col.gameObject);
             if(speed == 0){
