@@ -46,8 +46,8 @@ public class Enemy : MonoBehaviour
             //Instantiate(playerHitEffect[x], transform.position, Quaternion.identity); //Toggle this on/off
             Vector3 oldPos = ss.positionStrength;
             Vector3 oldRot = ss.rotationStrength;
-            ss.positionStrength = new Vector3(0.6f,0.6f,0f);
-            ss.rotationStrength = new Vector3(0.6f,0.6f,0f);
+            ss.positionStrength = new Vector3(1f,1f,0f);
+            ss.rotationStrength = new Vector3(1f,1f,0f);
             ScreenShake.Invoke();//Toggle this on/off
             ss.positionStrength = oldPos;
             ss.rotationStrength = oldRot;

@@ -13,11 +13,14 @@ public class Shoot : MonoBehaviour
     private float timer;
     public float timeBtwFiring;
 
+    private ScreenShake ss;
+
     bool playSound;
 
     void Start()
     {
         playerPos = GetComponent<Transform>();
+        ss = GameObject.FindGameObjectWithTag("Shake").GetComponent<ScreenShake>();
     }
 
     // Update is called once per frame
@@ -50,6 +53,14 @@ public class Shoot : MonoBehaviour
             }
             
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+
+            Vector3 oldPos = ss.positionStrength;
+            Vector3 oldRot = ss.rotationStrength;
+            ss.positionStrength = new Vector3(0.1f,0.1f,0f);
+            ss.rotationStrength = new Vector3(0.1f,0.1f,0f);
+            ScreenShake.Invoke();//Toggle this on/off
+            ss.positionStrength = oldPos;
+            ss.rotationStrength = oldRot;
         }
     }
 

@@ -28,7 +28,7 @@ public class ColorChange : MonoBehaviour
         {
             if (this.GetComponent<Enemy>().x == 0)
                 this.GetComponent<Enemy>().x = 1;
-            if(this.GetComponent<Enemy>().x == 1)
+            else if(this.GetComponent<Enemy>().x == 1)
                 this.GetComponent<Enemy>().x = 0;
         }
     }
