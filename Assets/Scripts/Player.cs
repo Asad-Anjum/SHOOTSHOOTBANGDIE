@@ -18,7 +18,12 @@ public class Player : MonoBehaviour
 
     public GameObject hitScreen;
     public GameObject freezeScreen;
+    public GameObject windScreen;
+    public GameObject fireScreen;
+
+    public GameObject windEffect;
     
+    private ScreenShake ss;
 
     //Used for dashing:
     public bool canDash = true;
@@ -34,6 +39,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        ss = GameObject.FindGameObjectWithTag("Shake").GetComponent<ScreenShake>();
         rb = GetComponent<Rigidbody2D>();
         oldHealth = health;
         soundEfx = FindObjectOfType<MusicManager>();
@@ -42,63 +48,40 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
-
-        if(hitScreen.GetComponent<Image>().color.a > 0)
-        {
-            var color = hitScreen.GetComponent<Image>().color;
-            color.a -= 0.001f;
-            hitScreen.GetComponent<Image>().color = color;
-        }
-
-        if(freezeScreen.GetComponent<Image>().color.a > 0)
-        {
-            var color = freezeScreen.GetComponent<Image>().color;
-            color.a -= 0.001f;
-            freezeScreen.GetComponent<Image>().color = color;
-        }
+        CheckOverlay(hitScreen);
+        CheckOverlay(freezeScreen);
+        CheckOverlay(windScreen);
+        CheckOverlay(fireScreen);
 
 
 
         if(Input.GetKeyDown(KeyCode.E))
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            for(int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].GetComponent<Enemy>().speed = 0;
-                enemies[i].GetComponent<ColorChange>().MatFreeze();
-            }
-
-            var color = freezeScreen.GetComponent<Image>().color;
-            color.a = 0.3f;
-            freezeScreen.GetComponent<Image>().color = color;
-            if (playSound)
-            {
-                soundEfx.PlaySoundEffects("Freeze");
-            }
+            EffectShake();
+            Freeze();
             
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            EffectShake();
+            Wind();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Fire();
+        }
+
+
+
+
         if(oldHealth != health)
         {
             GotHurt();
-            if(Camera.main.GetComponent<Camera>().backgroundColor == new Color(0f, 0f, 0f, 0f))
-                Camera.main.GetComponent<Camera>().backgroundColor = new Color(39f / 255f, 24f / 255f, 49f  / 255f, 0f);
-            else
-                Camera.main.GetComponent<Camera>().backgroundColor = new Color(0f, 0f, 0f, 0f);
-            this.GetComponent<ColorChange>().MatChange();
-            sp.alt = !sp.alt;
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            for(int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].GetComponent<ColorChange>().MatChange();
-            }
-
-            oldHealth = health;
-            if (playSound)
-            {
-                soundEfx.PlaySoundEffects("PlayerHit");
-            }
+            PlayerDamage();
         }
+        
         healthDisplay.text = "HEALTH: " + health.ToString();
         if(health <= 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -148,6 +131,81 @@ public class Player : MonoBehaviour
         var color = hitScreen.GetComponent<Image>().color;
         color.a = 0.3f;
         hitScreen.GetComponent<Image>().color = color;
+    }
+
+    void CheckOverlay(GameObject screen)
+    {
+        if(screen.GetComponent<Image>().color.a > 0)
+        {
+            var color = screen.GetComponent<Image>().color;
+            color.a -= 0.001f;
+            screen.GetComponent<Image>().color = color;
+        }
+    }
+
+    void EffectShake()
+    {
+        Vector3 oldPos = ss.positionStrength;
+        Vector3 oldRot = ss.rotationStrength;
+        ss.positionStrength = new Vector3(2f,2f,0f);
+        ss.rotationStrength = new Vector3(2f,2f,0f);
+        ScreenShake.Invoke();//Toggle this on/off
+        ss.positionStrength = oldPos;
+        ss.rotationStrength = oldRot;
+    }
+
+    void Freeze()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<Enemy>().speed = 0;
+            enemies[i].GetComponent<ColorChange>().MatFreeze();
+        }
+
+        var color = freezeScreen.GetComponent<Image>().color;
+        color.a = 0.3f;
+        freezeScreen.GetComponent<Image>().color = color;
+        if (playSound)
+        {
+            soundEfx.PlaySoundEffects("Freeze");
+        }
+    }
+
+    void Wind()
+    {
+        Instantiate(windEffect, transform.position, Quaternion.identity);
+        var color = windScreen.GetComponent<Image>().color;
+        color.a = 0.3f;
+        windScreen.GetComponent<Image>().color = color;
+    }
+
+    void Fire()
+    {
+        var color = fireScreen.GetComponent<Image>().color;
+        color.a = 0.3f;
+        fireScreen.GetComponent<Image>().color = color;
+    }
+
+    void PlayerDamage()
+    {
+        if(Camera.main.GetComponent<Camera>().backgroundColor == new Color(0f, 0f, 0f, 0f))
+            Camera.main.GetComponent<Camera>().backgroundColor = new Color(39f / 255f, 24f / 255f, 49f  / 255f, 0f);
+        else
+            Camera.main.GetComponent<Camera>().backgroundColor = new Color(0f, 0f, 0f, 0f);
+        this.GetComponent<ColorChange>().MatChange();
+        sp.alt = !sp.alt;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<ColorChange>().MatChange();
+        }
+
+        oldHealth = health;
+        if (playSound)
+        {
+            soundEfx.PlaySoundEffects("PlayerHit");
+        }
     }
 
     public void ToggleSound(bool tog)

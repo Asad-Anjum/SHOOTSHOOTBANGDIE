@@ -96,14 +96,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7658576919998524360}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -136,7 +136,9 @@ MonoBehaviour:
   - {fileID: 3469916150348844834, guid: baf6fa00f4701fc4190716fed934dd27, type: 3}
   - {fileID: 3469916150348844834, guid: ea8f83a5172482442a1b53678890bbb4, type: 3}
   - {fileID: 3469916150348844834, guid: 1a4c465c77c4ef44bb452f90d455838c, type: 3}
+  - {fileID: 4025464740585308078, guid: 92b76e26ffaefac4fa7c776bfd4ad559, type: 3}
   x: 0
+  thrust: 300
 --- !u!58 &9167916226351171349
 CircleCollider2D:
   m_ObjectHideFlags: 0
