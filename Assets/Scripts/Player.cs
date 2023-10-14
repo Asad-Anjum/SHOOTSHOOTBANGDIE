@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     public GameObject hitScreen;
     public GameObject freezeScreen;
+    
 
     //Used for dashing:
     public bool canDash = true;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
     public float dashTime;
     public float dashCooldown;
 
-    bool playSound;
+    public bool playSound;
 
     [SerializeField] private TrailRenderer tr;
 
@@ -80,6 +81,10 @@ public class Player : MonoBehaviour
         if(oldHealth != health)
         {
             GotHurt();
+            if(Camera.main.GetComponent<Camera>().backgroundColor == new Color(0f, 0f, 0f, 0f))
+                Camera.main.GetComponent<Camera>().backgroundColor = new Color(39f / 255f, 24f / 255f, 49f  / 255f, 0f);
+            else
+                Camera.main.GetComponent<Camera>().backgroundColor = new Color(0f, 0f, 0f, 0f);
             this.GetComponent<ColorChange>().MatChange();
             sp.alt = !sp.alt;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -138,7 +143,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void GotHurt()
+    void GotHurt() //ADD TOGGLE
     {
         var color = hitScreen.GetComponent<Image>().color;
         color.a = 0.3f;

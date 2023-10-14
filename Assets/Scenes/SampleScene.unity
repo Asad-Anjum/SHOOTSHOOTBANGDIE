@@ -774,8 +774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 519420032}
-  positionStrength: {x: 0.3, y: 0.24, z: 0}
-  rotationStrength: {x: 0.21, y: 0.21, z: 0}
+  positionStrength: {x: 0.6, y: 0.6, z: 0}
+  rotationStrength: {x: 0.6, y: 0.6, z: 0}
 --- !u!4 &343471513
 Transform:
   m_ObjectHideFlags: 0
@@ -1850,7 +1850,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1042080376}
         m_TargetAssemblyTypeName: Shoot, Assembly-CSharp
@@ -2367,6 +2367,7 @@ MonoBehaviour:
   dashSpeed: 80
   dashTime: 0.2
   dashCooldown: 1
+  playSound: 0
   tr: {fileID: 1042080379}
 --- !u!114 &1042080376
 MonoBehaviour:
@@ -2383,7 +2384,7 @@ MonoBehaviour:
   bullet: {fileID: 1552798621693753173, guid: a2b864379c0c83843955fae43a61c150, type: 3}
   bulletTransform: {fileID: 1065820635}
   canFire: 1
-  timeBtwFiring: 0.2
+  timeBtwFiring: 0.1
 --- !u!60 &1042080377
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3377,14 +3378,14 @@ MonoBehaviour:
   sounds:
   - name: MainTheme
     clip: {fileID: 8300000, guid: aff07b1e9489f43388b5344402878dbc, type: 3}
-    volume: 0.5
+    volume: 0.264
     pitch: 1
     loop: 1
     group: {fileID: 24300002, guid: 327801d013a06f74eab86abb789f3225, type: 2}
     source: {fileID: 0}
   - name: Laser
-    clip: {fileID: 8300000, guid: 2eef6aa47421b7c47a9ea3f2ca4f8f24, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 0bc85e19196244844804aec7469ec523, type: 3}
+    volume: 0.923
     pitch: 1
     loop: 0
     group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
@@ -3397,22 +3398,22 @@ MonoBehaviour:
     group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
     source: {fileID: 0}
   - name: Freeze
-    clip: {fileID: 8300000, guid: 16fa8fd6c64a9a94881a3d6521d08a04, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 8c9a006b4abb4d84db839816526a816a, type: 3}
+    volume: 0.883
     pitch: 1
     loop: 0
     group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
     source: {fileID: 0}
   - name: Shatter
     clip: {fileID: 8300000, guid: 7470603b4194f774fa6fd08ce509721f, type: 3}
-    volume: 0.5
-    pitch: 1
+    volume: 0.408
+    pitch: 1.409
     loop: 0
     group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
     source: {fileID: 0}
   - name: EnemyDeath
-    clip: {fileID: 8300000, guid: 1488a379588bae9428ae963f4a072e08, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: ab084c72854cc3043a140d2727189c40, type: 3}
+    volume: 0.368
     pitch: 1
     loop: 0
     group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}

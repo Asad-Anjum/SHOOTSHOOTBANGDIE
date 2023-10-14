@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
             ScreenShake.Invoke();//Toggle this on/off
             Destroy(col.gameObject);
             if(speed == 0){
-                if (playSFX)
+                if (player.playSound) // Toggle for enemies wasn't working directly
                 {
                     FindObjectOfType<MusicManager>().PlaySoundEffects("Shatter");
                 }
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
             }
             else{
 
-                if (playSFX)
+                if (player.playSound)
                 {
                     FindObjectOfType<MusicManager>().PlaySoundEffects("EnemyDeath");
                 }
