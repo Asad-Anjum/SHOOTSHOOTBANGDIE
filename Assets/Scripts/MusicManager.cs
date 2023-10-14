@@ -41,14 +41,7 @@ public class MusicManager : MonoBehaviour
 
     
     void FixedUpdate(){
-        if (PublicVars.playTheme)
-        {
-            BGM();
-        }
-        else
-        {
-            StopBGM("MainTheme");
-        }
+        BGM();
     }
 
    
@@ -57,21 +50,30 @@ public class MusicManager : MonoBehaviour
     
     void BGM(){
         string sceneName = SceneManager.GetActiveScene().name;
-        if(sceneName != currScene){
-            if(sceneName == "SampleScene"){
-                if(currBGM != null){
-                    currBGM.Stop();
+
+        if(PublicVars.playTheme){
+            if(sceneName != currScene){
+                if(sceneName == "SampleScene"){
+                    
+                    if(currBGM != null){
+                        currBGM.Stop();
+                    }
+
+                    
+
+                    currBGM = PlayBGM("MainTheme");
+
+                    //currBGM = StopBGM("MainTheme");
+                    
                 }
-
-                
-
-                currBGM = PlayBGM("MainTheme");
-
-                //currBGM = StopBGM("MainTheme");
-                
+                currScene = sceneName;
             }
-            currScene = sceneName;
+            }
+        else{
+            currBGM.Stop();
+            currScene = "";
         }
+        
     } 
 
     
@@ -88,7 +90,7 @@ public class MusicManager : MonoBehaviour
         return s.source;
     }
 
-    public void StopBGM(string name)
+    public void StopBGM()
     {
         Sound s = Array.Find(sounds, sounds => sounds.name == name);
 
