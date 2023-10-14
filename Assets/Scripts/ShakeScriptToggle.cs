@@ -26,7 +26,7 @@ public class ShakeScriptToggle : MonoBehaviour
             this.GetComponent<ScreenShake>().enabled = true;
         }
     }
-
+    
     public void toggleScreenShake(bool tog)
     {
         if (tog)
@@ -37,5 +37,5 @@ public class ShakeScriptToggle : MonoBehaviour
         {
             screenShake = false;
         }
-    }
+    } 
 }

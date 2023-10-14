@@ -15,7 +15,7 @@ public class Shoot : MonoBehaviour
 
     private ScreenShake ss;
 
-    bool playSound;
+    //bool playSound;
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class Shoot : MonoBehaviour
         if(Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
-            if (playSound)
+            if (PublicVars.playSFX) //(playSound)
             {
                 FindObjectOfType<MusicManager>().PlaySoundEffects("Laser");
             }
@@ -63,7 +63,7 @@ public class Shoot : MonoBehaviour
             ss.rotationStrength = oldRot;
         }
     }
-
+    /*
     public void ToggleSFX(bool tog)
     {
         if(tog)
@@ -73,5 +73,5 @@ public class Shoot : MonoBehaviour
         else {
             playSound=false;
         }
-    }
+    } */
 }

@@ -15,13 +15,14 @@ public class Enemy : MonoBehaviour
     public GameObject[] dieEffect;
     public int x = 0;
 
-    bool playSFX;
+    //bool playSFX;
 
     private Material mat;
 
     private Rigidbody2D rb;
     public float thrust;
-    
+
+    //private ToggleEnemyFX fx;
 
     void Start()
     {
@@ -56,7 +57,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-        if (playSFX)
+        if (PublicVars.playSFX) // if (playSFX)
         {
             print("play");
         }
@@ -91,7 +92,14 @@ public class Enemy : MonoBehaviour
             ScreenShake.Invoke();//Toggle this on/off
             ss.positionStrength = oldPos;
             ss.rotationStrength = oldRot;
-            Camera.main.GetComponent<GlitchEffect>().enabled = true;
+
+            if (PublicVars.glitchEffectOn)
+            {
+                Camera.main.GetComponent<GlitchEffect>().enabled = true;
+            }
+
+            //Camera.main.GetComponent<GlitchEffect>().enabled = true; //toggle
+
             player.health--;
             Destroy(gameObject);
         }
@@ -111,7 +119,7 @@ public class Enemy : MonoBehaviour
             }
             ScreenShake.Invoke();//Toggle this on/off
             if(speed == 0){
-                if (player.playSound) // Toggle for enemies wasn't working directly
+                if (PublicVars.playSFX) //(player.playSound) // Toggle for enemies wasn't working directly
                 {
                     FindObjectOfType<MusicManager>().PlaySoundEffects("Shatter");
                 }
@@ -119,7 +127,7 @@ public class Enemy : MonoBehaviour
             }
             else{
 
-                if (player.playSound)
+                if (PublicVars.playSFX) //(player.playSound)
                 {
                     FindObjectOfType<MusicManager>().PlaySoundEffects("EnemyDeath");
                 }
@@ -127,18 +135,20 @@ public class Enemy : MonoBehaviour
                 }
             Destroy(gameObject);
     }
-
+    /*
     public void ToggleSFX(bool tog)
     {
         if (tog)
         {
             print("t");
             playSFX = true;
+            fx.saveSelectedToggle("SFX", 1);
         }
         else
         {
             print("f");
             playSFX=false;
+            fx.saveSelectedToggle("SFX", 0);
         }
-    }
+    } */
 }

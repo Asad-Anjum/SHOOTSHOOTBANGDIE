@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     public float dashTime;
     public float dashCooldown;
 
-    public bool playSound;
+    //public bool playSound;
 
     [SerializeField] private TrailRenderer tr;
 
@@ -78,14 +78,18 @@ public class Player : MonoBehaviour
 
         if(oldHealth != health)
         {
-            GotHurt();
+            if (PublicVars.gotHurtOn)
+            {
+                GotHurt();
+            }
+            //GotHurt(); // toggle on/off
             PlayerDamage();
         }
         
         healthDisplay.text = "HEALTH: " + health.ToString();
         if(health <= 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            if (playSound)
+            if (PublicVars.playSFX) //(playSound)
             {
                 soundEfx.PlaySoundEffects("PlayerDeath");
             } 
@@ -166,7 +170,7 @@ public class Player : MonoBehaviour
         var color = freezeScreen.GetComponent<Image>().color;
         color.a = 0.3f;
         freezeScreen.GetComponent<Image>().color = color;
-        if (playSound)
+        if (PublicVars.playSFX) //(playSound)
         {
             soundEfx.PlaySoundEffects("Freeze");
         }
@@ -202,12 +206,12 @@ public class Player : MonoBehaviour
         }
 
         oldHealth = health;
-        if (playSound)
+        if (PublicVars.playSFX) //(playSound)
         {
             soundEfx.PlaySoundEffects("PlayerHit");
         }
     }
-
+    /*
     public void ToggleSound(bool tog)
     {
         if (tog)
@@ -218,6 +222,6 @@ public class Player : MonoBehaviour
         {
             playSound = false;
         }
-    }
+    } */
 
 }
