@@ -66,11 +66,13 @@ public class Player : MonoBehaviour
         {
             EffectShake();
             Wind();
+            activateSfx("Wind");
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Fire();
+            activateSfx("Fire");
         }
 
 
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
             }
             //GotHurt(); // toggle on/off
             PlayerDamage();
+            soundEfx.speedUp();
         }
         
         healthDisplay.text = "HEALTH: " + health.ToString();
@@ -92,6 +95,7 @@ public class Player : MonoBehaviour
             if (PublicVars.playSFX) //(playSound)
             {
                 soundEfx.PlaySoundEffects("PlayerDeath");
+                soundEfx.revert();
             } 
         }
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -100,7 +104,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
             StartCoroutine(Dash());
-            //Dash Sfx here
+            activateSfx("Dash");
         }
     }
 
@@ -209,6 +213,12 @@ public class Player : MonoBehaviour
         if (PublicVars.playSFX) //(playSound)
         {
             soundEfx.PlaySoundEffects("PlayerHit");
+        }
+    }
+
+    public void activateSfx(string sfx){
+        if(PublicVars.playSFX){
+            soundEfx.PlaySoundEffects(sfx);
         }
     }
     /*

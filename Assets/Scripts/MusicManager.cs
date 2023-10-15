@@ -14,6 +14,8 @@ public class MusicManager : MonoBehaviour
 
     bool playTheme;
 
+    public float ogPitch = 1;
+
     void Awake()
     {
         if(instance == null){
@@ -44,8 +46,12 @@ public class MusicManager : MonoBehaviour
         BGM();
     }
 
-   
-
+    public void speedUp(){
+        currBGM.pitch += .01f;
+        }
+    public void revert(){
+        currBGM.pitch = ogPitch;
+    }
    
     
     void BGM(){
@@ -62,6 +68,8 @@ public class MusicManager : MonoBehaviour
                     
 
                     currBGM = PlayBGM("MainTheme");
+                    ogPitch = currBGM.pitch;
+
 
                     //currBGM = StopBGM("MainTheme");
                     
@@ -71,6 +79,7 @@ public class MusicManager : MonoBehaviour
             }
         else{
             currBGM.Stop();
+            currBGM = null;
             currScene = "";
         }
         

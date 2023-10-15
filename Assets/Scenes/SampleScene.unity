@@ -1951,7 +1951,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105.42059, y: 255.03185}
+  m_AnchoredPosition: {x: 105.42059, y: -17}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &853986056
@@ -4057,6 +4057,27 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 586e9bedbe334d947a83fc7526aadb0d, type: 3}
     volume: 0.5
     pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: e964416d659e417429d6ae44cfdd724e, type: 3}
+    volume: 0.341
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 8300000, guid: fbf4f54d2fcd80644875891755ba21e5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
+    source: {fileID: 0}
+  - name: Fire
+    clip: {fileID: 8300000, guid: 35692e207e59ef448aa433d2545920e5, type: 3}
+    volume: 0.5
+    pitch: 1.5
     loop: 0
     group: {fileID: 24300002, guid: 75c3ff2d2ceb5414aab0a0f86ee3b487, type: 2}
     source: {fileID: 0}
