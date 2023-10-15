@@ -91,7 +91,6 @@ public class Player : MonoBehaviour
             }
             PlayerDamage();
             //soundEfx.speedUp();
-
         }
         
         healthDisplay.text = "HEALTH: " + health.ToString();
@@ -102,6 +101,7 @@ public class Player : MonoBehaviour
             {
                 soundEfx.PlaySoundEffects("PlayerDeath");
             }
+            soundEfx.StopBGM();
         }
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement = input.normalized * speed;

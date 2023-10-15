@@ -107,10 +107,9 @@ public class MusicManager : MonoBehaviour
 
     public void StopBGM()
     {
-        Sound s = Array.Find(sounds, sounds => sounds.name == name);
-
-
-        s.source.Stop();
+        currBGM.Stop();
+        currBGM = null;
+        currScene = "";
         
     }
 
