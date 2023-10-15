@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
     
     private ScreenShake ss;
 
+    public float invTime;
+    public bool inv = false;
+    private float invCounter;
+
     //Used for dashing:
     public bool canDash = true;
     public float dashSpeed;
@@ -78,27 +82,26 @@ public class Player : MonoBehaviour
         }
 
 
-
-
+        
         if(oldHealth != health)
         {
             if (PublicVars.gotHurtOn)
             {
                 GotHurt();
             }
-            //GotHurt(); // toggle on/off
             PlayerDamage();
-            soundEfx.speedUp();
+            //soundEfx.speedUp();
+
         }
         
         healthDisplay.text = "HEALTH: " + health.ToString();
         if(health <= 0){
+            //soundEfx.revert();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             if (PublicVars.playSFX) //(playSound)
             {
                 soundEfx.PlaySoundEffects("PlayerDeath");
-                soundEfx.revert();
-            } 
+            }
         }
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement = input.normalized * speed;
@@ -238,17 +241,6 @@ public class Player : MonoBehaviour
             soundEfx.PlaySoundEffects(sfx);
         }
     }
-    /*
-    public void ToggleSound(bool tog)
-    {
-        if (tog)
-        {
-            playSound = true;
-        }
-        else
-        {
-            playSound = false;
-        }
-    } */
+
 
 }

@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour
     public static string currScene = "";
     public static AudioSource currBGM = null;
 
-    bool playTheme;
+    //bool playTheme;
 
     public float ogPitch = 1;
 
@@ -47,10 +47,12 @@ public class MusicManager : MonoBehaviour
     }
 
     public void speedUp(){
-        currBGM.pitch += .01f;
+        if(PublicVars.playTheme)
+            currBGM.pitch += .01f;
         }
     public void revert(){
-        currBGM.pitch = ogPitch;
+        if(PublicVars.playTheme)
+            currBGM.pitch = ogPitch;
     }
    
     
@@ -79,9 +81,12 @@ public class MusicManager : MonoBehaviour
             }
         else{
             if(currBGM != null)
-            currBGM.Stop();
-            currBGM = null;
-            currScene = "";
+            {
+                currBGM.Stop();
+                currBGM = null;
+                currScene = "";
+            }
+
         }
         
     } 

@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if(col.tag == "Player" && !player.inv)
         {
             if (PublicVars.playerHitEffectsOn)
             {
@@ -135,20 +135,5 @@ public class Enemy : MonoBehaviour
                 }
             Destroy(gameObject);
     }
-    /*
-    public void ToggleSFX(bool tog)
-    {
-        if (tog)
-        {
-            print("t");
-            playSFX = true;
-            fx.saveSelectedToggle("SFX", 1);
-        }
-        else
-        {
-            print("f");
-            playSFX=false;
-            fx.saveSelectedToggle("SFX", 0);
-        }
-    } */
+
 }
