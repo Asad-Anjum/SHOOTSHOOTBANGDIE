@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
         if(timeBtwSpawns <= 0)
         {
             int point = Random.Range(0, spawnPoints.Length);
-            if(!alt)
+            if(!alt || !PublicVars.ColorsOn)
                 Instantiate(enemy, spawnPoints[point].position, Quaternion.identity);
             else
                 Instantiate(enemy2, spawnPoints[point].position, Quaternion.identity);

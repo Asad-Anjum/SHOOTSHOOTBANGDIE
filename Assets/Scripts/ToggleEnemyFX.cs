@@ -8,10 +8,10 @@ public class ToggleEnemyFX : MonoBehaviour
     // SAVE TOGGLES CODE
 
 
-    [SerializeField] private Toggle[] toggles = new Toggle[7];
+    [SerializeField] private Toggle[] toggles = new Toggle[9];
 
     private string[] toggle_names = { "SFX", "Music", "Camera Shake",
-    "Die Effects", "Player Hit Effects", "Got Hurt Effect", "Glitch Effect"};
+    "Die Effects", "Player Hit Effects", "Got Hurt Effect", "Glitch Effect", "Colors Effect", "Splash Effect"};
     //set int for player pref to 0 if toggle off, 1 if toggle on
     void Awake()
     {
@@ -113,6 +113,34 @@ public class ToggleEnemyFX : MonoBehaviour
         {
             PublicVars.glitchEffectOn= false;
             saveSelectedToggle("Glitch Effect", 0);
+        }
+    }
+
+    public void ToggleColors(bool tog)
+    {
+        if (tog)
+        {
+            PublicVars.ColorsOn = true;
+            saveSelectedToggle("Colors Effect", 1);
+        }
+        else
+        {
+            PublicVars.ColorsOn= false;
+            saveSelectedToggle("Colors Effect", 0);
+        }
+    }
+
+    public void ToggleSplashScreen(bool tog)
+    {
+        if (tog)
+        {
+            PublicVars.SplashOn = true;
+            saveSelectedToggle("Splash Effect", 1);
+        }
+        else
+        {
+            PublicVars.SplashOn= false;
+            saveSelectedToggle("Splash Effect", 0);
         }
     }
     /*
