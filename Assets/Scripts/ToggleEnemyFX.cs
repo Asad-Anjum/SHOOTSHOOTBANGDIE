@@ -17,6 +17,7 @@ public class ToggleEnemyFX : MonoBehaviour
     {
         for (int i = 0; i < toggles.Length; i++)
         {
+            toggles[i].isOn = true;
             if (PlayerPrefs.GetInt(toggle_names[i]) == 0)
             {
                 toggles[i].isOn = false; //mistake: used .enabled instead of .isOn
@@ -98,7 +99,7 @@ public class ToggleEnemyFX : MonoBehaviour
         else
         {
             PublicVars.gotHurtOn= false;
-            saveSelectedToggle("Got Hurt Effect", 1);
+            saveSelectedToggle("Got Hurt Effect", 0);
         }
     }
 
@@ -143,20 +144,6 @@ public class ToggleEnemyFX : MonoBehaviour
             saveSelectedToggle("Splash Effect", 0);
         }
     }
-    /*
-    public void ToggleScreenShake(bool tog)
-    {
-        if (tog)
-        {
-            PublicVars.shakeCameraOn = true;
-            //cameraHolder.GetComponent<ScreenShake>().enabled = true;
-        }
-        else
-        {
-            PublicVars.shakeCameraOn = false;
-            //cameraHolder.GetComponent<ScreenShake>().enabled=false;
-        }
-    } */
 
 
     public void ToggleSFX(bool tog)

@@ -7,6 +7,7 @@ public class ShakeScriptToggle : MonoBehaviour
 
     //public Behaviour shake;
     bool screenShake;
+    public ToggleEnemyFX TEFX;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +32,15 @@ public class ShakeScriptToggle : MonoBehaviour
     {
         if (tog)
         {
+            PublicVars.shakeCameraOn = true;
             screenShake = true;
+            TEFX.saveSelectedToggle("Splash Effect", 1);
         }
         else
         {
+            PublicVars.shakeCameraOn = false;
             screenShake = false;
+            TEFX.saveSelectedToggle("Splash Effect", 0);
         }
     } 
 }
