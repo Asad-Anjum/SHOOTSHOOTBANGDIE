@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public int x = 0;
 
     //bool playSFX;
+    private ScoreCounter sc;
 
     private Material mat;
 
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        sc = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreCounter>();
         rb = this.GetComponent<Rigidbody2D>();
         ss = GameObject.FindGameObjectWithTag("Shake").GetComponent<ScreenShake>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -52,15 +54,12 @@ public class Enemy : MonoBehaviour
             ss.positionStrength = new Vector3(5f,5f,0f);
             ss.rotationStrength = new Vector3(5f,5f,0f);
             EnemyDeath();
+            sc.score++;
             ss.positionStrength = oldPos;
             ss.rotationStrength = oldRot;
             
         }
 
-        if (PublicVars.playSFX) // if (playSFX)
-        {
-            print("play");
-        }
 
         transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
     }
@@ -78,7 +77,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player" && !player.inv)
+        if(col.tag == "Player")
         {
             if (PublicVars.playerHitEffectsOn)
             {
@@ -107,6 +106,7 @@ public class Enemy : MonoBehaviour
         if(col.tag == "Bullet")
         {
             EnemyDeath();
+            sc.score++;
             Destroy(col.gameObject);
         }
     }

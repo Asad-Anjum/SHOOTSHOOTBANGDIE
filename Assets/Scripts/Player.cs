@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject fireScreen;
 
     public GameObject windEffect;
+    public GameObject fireEffect;
     
     private ScreenShake ss;
 
@@ -199,6 +200,7 @@ public class Player : MonoBehaviour
 
     void Fire()
     {
+        Instantiate(fireEffect, transform.position, Quaternion.identity);
         var color = fireScreen.GetComponent<Image>().color;
         color.a = 0.3f;
         fireScreen.GetComponent<Image>().color = color;
