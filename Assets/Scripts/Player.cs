@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
     public GameObject windEffect;
     public GameObject fireEffect;
+
+    public Cooldowns cool;
     
     private ScreenShake ss;
 
@@ -60,14 +62,14 @@ public class Player : MonoBehaviour
 
 
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && cool.abilityImage2.fillAmount == 1)
         {
             EffectShake();
             Freeze();
             
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && cool.abilityImage3.fillAmount == 1)
         {
             EffectShake();
             activateSfx("Wind");
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour
                 Wind();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && cool.abilityImage1.fillAmount == 1)
         {
             activateSfx("Fire");
             if(PublicVars.SplashOn)

@@ -29,7 +29,6 @@ public class ScoreCounter : MonoBehaviour
             txt.fontSize -= 0.1f;
         
 
-        Debug.Log(txt.fontSize);
 
     }
 

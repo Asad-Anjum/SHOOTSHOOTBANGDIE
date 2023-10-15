@@ -23,10 +23,13 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     public float thrust;
 
+    private Cooldowns cool;
+
     //private ToggleEnemyFX fx;
 
     void Start()
     {
+        cool = GameObject.FindGameObjectWithTag("Cooldowns").GetComponent<Cooldowns>();
         sc = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreCounter>();
         rb = this.GetComponent<Rigidbody2D>();
         ss = GameObject.FindGameObjectWithTag("Shake").GetComponent<ScreenShake>();
@@ -41,12 +44,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && cool.abilityImage3.fillAmount == 1)
         {
             StartCoroutine(PushBack());
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && cool.abilityImage1.fillAmount == 1)
         {
             x = 3;
             Vector3 oldPos = ss.positionStrength;

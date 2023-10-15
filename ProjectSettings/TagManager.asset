@@ -9,6 +9,7 @@ TagManager:
   - Spawner
   - Shake
   - Score
+  - Cooldowns
   layers:
   - Default
   - TransparentFX
