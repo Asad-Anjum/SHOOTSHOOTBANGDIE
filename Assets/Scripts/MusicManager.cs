@@ -78,6 +78,7 @@ public class MusicManager : MonoBehaviour
             }
             }
         else{
+            if(currBGM != null)
             currBGM.Stop();
             currBGM = null;
             currScene = "";

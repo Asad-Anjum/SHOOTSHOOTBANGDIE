@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToggleBGMusic : MonoBehaviour
 {
-    private ToggleEnemyFX fx;
+    public ToggleEnemyFX fx;
     public void TogglePlayTheme(bool tog)
     {
         if (tog)

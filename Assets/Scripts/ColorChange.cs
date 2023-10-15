@@ -21,8 +21,8 @@ public class ColorChange : MonoBehaviour
     {
         if(x == 0) x = 1;
         else if(x == 1) x = 0;
-
-        rend.sharedMaterial = mat[x];
+        if(PublicVars.ColorsOn)
+            rend.sharedMaterial = mat[x];
 
         if(this.gameObject.tag == "Enemy")
         {
@@ -35,7 +35,8 @@ public class ColorChange : MonoBehaviour
 
     public void MatFreeze()
     {
-        rend.sharedMaterial = mat[2];
+        if(PublicVars.ColorsOn)
+            rend.sharedMaterial = mat[2];
         x = 2;
         this.GetComponent<Enemy>().x = 2;
     }

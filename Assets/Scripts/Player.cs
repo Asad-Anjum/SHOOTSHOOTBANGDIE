@@ -65,14 +65,16 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             EffectShake();
-            Wind();
             activateSfx("Wind");
+            if(PublicVars.SplashOn)
+                Wind();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Fire();
             activateSfx("Fire");
+            if(PublicVars.SplashOn)
+                Fire();
         }
 
 
@@ -168,12 +170,16 @@ public class Player : MonoBehaviour
         for(int i = 0; i < enemies.Length; i++)
         {
             enemies[i].GetComponent<Enemy>().speed = 0;
-            enemies[i].GetComponent<ColorChange>().MatFreeze();
+            if(PublicVars.ColorsOn)
+                enemies[i].GetComponent<ColorChange>().MatFreeze();
         }
 
-        var color = freezeScreen.GetComponent<Image>().color;
-        color.a = 0.3f;
-        freezeScreen.GetComponent<Image>().color = color;
+        if(PublicVars.SplashOn)
+        {
+            var color = freezeScreen.GetComponent<Image>().color;
+            color.a = 0.3f;
+            freezeScreen.GetComponent<Image>().color = color;
+        }
         if (PublicVars.playSFX) //(playSound)
         {
             soundEfx.PlaySoundEffects("Freeze");
@@ -198,15 +204,26 @@ public class Player : MonoBehaviour
     void PlayerDamage()
     {
         if(Camera.main.GetComponent<Camera>().backgroundColor == new Color(0f, 0f, 0f, 0f))
-            Camera.main.GetComponent<Camera>().backgroundColor = new Color(39f / 255f, 24f / 255f, 49f  / 255f, 0f);
+        {
+            if(PublicVars.ColorsOn)
+                Camera.main.GetComponent<Camera>().backgroundColor = new Color(39f / 255f, 24f / 255f, 49f  / 255f, 0f);
+        }
+            
         else
-            Camera.main.GetComponent<Camera>().backgroundColor = new Color(0f, 0f, 0f, 0f);
-        this.GetComponent<ColorChange>().MatChange();
+        {
+            if(PublicVars.ColorsOn)
+                Camera.main.GetComponent<Camera>().backgroundColor = new Color(0f, 0f, 0f, 0f);
+        }
+            
+        if(PublicVars.ColorsOn)
+            this.GetComponent<ColorChange>().MatChange();
         sp.alt = !sp.alt;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        
         for(int i = 0; i < enemies.Length; i++)
         {
-            enemies[i].GetComponent<ColorChange>().MatChange();
+            if(PublicVars.ColorsOn)
+                enemies[i].GetComponent<ColorChange>().MatChange();
         }
 
         oldHealth = health;

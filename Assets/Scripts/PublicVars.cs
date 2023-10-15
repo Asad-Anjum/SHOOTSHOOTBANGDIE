@@ -12,4 +12,6 @@ public static class PublicVars
     public static bool glitchEffectOn;
     public static bool shakeCameraOn;
     public static bool playSFX;
+    public static bool ColorsOn;
+    public static bool SplashOn;
 }
