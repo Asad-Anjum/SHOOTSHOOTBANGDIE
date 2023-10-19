@@ -17,7 +17,7 @@ public class ToggleEnemyFX : MonoBehaviour
     {
         for (int i = 0; i < toggles.Length; i++)
         {
-            toggles[i].isOn = true;
+            toggles[i].isOn = false;
             if (PlayerPrefs.GetInt(toggle_names[i]) == 0)
             {
                 toggles[i].isOn = false; //mistake: used .enabled instead of .isOn

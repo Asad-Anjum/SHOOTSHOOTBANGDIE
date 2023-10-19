@@ -36,7 +36,7 @@ public class GlitchEffect : MonoBehaviour
 	private float _glitchdownTime = 0.05f;
 	private float _flickerTime = 0.5f;
 	private Material _material;
-	private int secondsactive = 0;
+	private float secondsactive = 0;
 
 	void Start()
 	{
@@ -46,7 +46,7 @@ public class GlitchEffect : MonoBehaviour
 	// Called by camera to apply image effect
 	void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		if(secondsactive > 10)
+		if(secondsactive > 0.02f)
 		{
 			secondsactive = 0;
 			this.enabled = false;
@@ -100,11 +100,11 @@ public class GlitchEffect : MonoBehaviour
 		if (flipIntensity == 0)
 			_material.SetFloat("flip_down", 1);
 
-		if (Random.value < 0.05 * intensity)
+		if (Random.value < 0.1 * intensity)
 		{
 			_material.SetFloat("displace", 0.4f * intensity);
 			_material.SetFloat("scale", 1 - 0.4f * intensity);
-			secondsactive++;
+			secondsactive += Time.deltaTime;
 
 		}
 		else

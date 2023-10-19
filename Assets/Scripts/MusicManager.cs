@@ -107,9 +107,12 @@ public class MusicManager : MonoBehaviour
 
     public void StopBGM()
     {
-        currBGM.Stop();
-        currBGM = null;
-        currScene = "";
+        if(currBGM != null)
+            {
+                currBGM.Stop();
+                currBGM = null;
+                currScene = "";
+            }
         
     }
 

@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
         if(screen.GetComponent<Image>().color.a > 0)
         {
             var color = screen.GetComponent<Image>().color;
-            color.a -= 0.001f;
+            color.a -= 0.4f * Time.deltaTime;
             screen.GetComponent<Image>().color = color;
         }
     }
